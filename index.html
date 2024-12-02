@@ -14,19 +14,57 @@
             background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
             overflow: hidden;
         }
+
         .container {
             margin-top: 10%;
         }
+
         h1 {
             font-size: 3rem;
             margin: 20px 0;
         }
+
         p {
             font-size: 1.5rem;
             width: 70%;
             margin: 0 auto;
             line-height: 1.6;
         }
+
+        /* Envelope Styles */
+        .letter {
+            width: 60%;
+            margin: 0 auto;
+            background: #f4e1d2;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            transform: rotate(180deg);
+            opacity: 0;
+            animation: openLetter 2s forwards;
+        }
+
+        .letter h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .letter p {
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+
+        @keyframes openLetter {
+            0% {
+                transform: rotate(180deg);
+                opacity: 0;
+            }
+            100% {
+                transform: rotate(0deg);
+                opacity: 1;
+            }
+        }
+
         .hearts {
             position: fixed;
             top: 0;
@@ -36,6 +74,7 @@
             pointer-events: none;
             overflow: hidden;
         }
+
         .heart {
             width: 20px;
             height: 20px;
@@ -44,6 +83,7 @@
             background: red;
             animation: floatUp 4s infinite ease-in-out;
         }
+
         .heart::before,
         .heart::after {
             content: '';
@@ -53,14 +93,17 @@
             background: red;
             border-radius: 50%;
         }
+
         .heart::before {
             top: -10px;
             left: 0;
         }
+
         .heart::after {
             top: 0;
             left: -10px;
         }
+
         @keyframes floatUp {
             0% {
                 transform: translateY(0) scale(1);
@@ -71,26 +114,34 @@
                 opacity: 0;
             }
         }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Happy Birthday, My Love! ❤️</h1>
-        <p>
-             beautiful person in my life,<br>
-            Every day with you feels like a dream, and today, I want you to know how deeply loved you are.<br>
-            May your birthday be filled with as much joy and love as you’ve brought into my life.<br>
-            I adore you with all my heart! 💕
-        </p>
+        <div id="letter" class="letter">
+            <h2>Happy Birthday, My Love... My TINKU! ❤️</h2>
+            <p>
+                To the most beautiful person in my life,<br>
+                Eppudu nannu vadhileyyaku tinku plzz, konni roojulu ayyaaka prathi birthday ki ninnu happy unchatha i promise.<br>
+                Just wait for some time... nee kalala rakumarudu ochi ninnu rekkala gurram loo theskellaka poina.. ni vikky ochi ninnu rolls-royce lo theeskelthadu<br>
+                Konni roojulu wait chey tinku antha maarchestha badhalu padey ni jeevitham ni rangulatho nimpestha. ee okka birthday edavku tinku plzz nakosam. <br>
+                nenu ee letter three days ninchi create chedhaam ani try chesthunna inka chala pedadhaam ani try chesa but time lekapoovadam valla sakram raala. ayina chala time spend chesa without even internet own ga<br>
+                but em chesthaam i failed to complete it in time cha eesari kooda sakranga wish cheyyaleka poyya. entha anukunnaano thelsa. but cheilekapoyya edho pichi pichiga ochindhi.last inka 10 mins unnappudu idhantha type chesthunna . <br>
+                i love you soooo much ra tinku💕. I will make sure many 'happy' birhdays. i promise.
+            </p>
+        </div>
     </div>
+
     <div class="hearts" id="hearts"></div>
+
     <audio autoplay loop>
-        <source src="https://raw.githubusercontent.com/Sathvik-777/bday/main/bensound-romantic.mp3
-" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/Sathvik-777/bday/main/bensound-romantic.mp3" type="audio/mpeg">
         Your browser does not support the audio tag.
     </audio>
 
     <script>
+        // Function to create hearts
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
@@ -109,6 +160,22 @@
 
         // Generate hearts at intervals
         setInterval(createHeart, 300);
+
+        // Check the time and open the letter at midnight
+        function checkTime() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // Trigger the letter animation exactly at midnight (00:00:00)
+            if (hours === 0 && minutes === 0 && seconds === 0) {
+                document.getElementById('letter').style.animation = 'openLetter 2s forwards';
+            }
+        }
+
+        // Check time every second
+        setInterval(checkTime, 1000);
     </script>
 </body>
 </html>
